@@ -6,5 +6,14 @@
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
+
+        <!-- The SDK declares its card screen without a theme, so it inherits the
+             host application's. A Flutter app's theme is not an AppCompat one and
+             the screen then dies in onCreate ("You need to use a Theme.AppCompat
+             theme"). Give it the plugin's AppCompat theme; the manifest merger adds
+             the attribute to the SDK's declaration. -->
+        <activity
+            android:name="payment.sdk.android.payments.PaymentsActivity"
+            android:theme="@style/Theme.NgeniusFlutterWrapper.Payments" />
     </application>
 </manifest>

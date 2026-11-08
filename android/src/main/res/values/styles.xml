@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme of the N-Genius card screen (PaymentsActivity). The screen is an
+         AppCompatActivity drawn with Compose, so it needs an AppCompat theme; the
+         host app's own theme (a plain Flutter LaunchTheme) is not one. DayNight
+         follows the system setting; the SDK colours themselves come from the
+         payment_sdk_* colour resources the host app may override. -->
+    <style name="Theme.NgeniusFlutterWrapper.Payments" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>

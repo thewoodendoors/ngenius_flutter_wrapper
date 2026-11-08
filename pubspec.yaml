@@ -1,6 +1,6 @@
 name: ngenius_flutter_wrapper
 description: "Card, Apple Pay and Google Pay payments through the official N-Genius Online (Network International) native SDKs."
-version: 0.1.0
+version: 0.1.1
 
 environment:
   sdk: ^3.13.5
