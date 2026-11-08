@@ -32,9 +32,11 @@ dependencies:
   used there; the plugin then starts the SDK's `PaymentsActivity` with `startActivityForResult`
   (request code `0x4E47`) and reads the same `PaymentsResult`. A `FlutterFragmentActivity` host gets
   the `PaymentsLauncher` path automatically.
-* **Google Pay** needs the `merchantGatewayId` N-Genius issues for your outlet and the Google Pay
-  API meta-data, which the plugin's manifest merges into the app. Test cards work in the `TEST`
-  environment without onboarding; `PRODUCTION` needs Google's approval of your app.
+* **Google Pay** needs the `merchantGatewayId` (the merchant ID of your Google Pay & Wallet Console
+  business profile; the SDK sends it to Google as the merchant id and as the gateway merchant id of
+  the `networkintl` gateway), Google Pay enabled on your outlet by Network International, and the
+  Google Pay API meta-data, which the plugin's manifest merges into the app. Test cards work in the
+  `TEST` environment without onboarding; `PRODUCTION` needs Google's approval of your app.
 * **Arabic**: set `android:supportsRtl="true"` on `<application>` so the SDK's screens mirror.
 * **Colours** are Android resources. Override any of the SDK's `payment_sdk_*` colours in your app's
   `res/values/colors.xml` (and `values-night/`): `payment_sdk_toolbar_color`,

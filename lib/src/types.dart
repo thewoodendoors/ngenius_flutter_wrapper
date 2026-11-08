@@ -85,7 +85,9 @@ class NgeniusGooglePay {
   /// `'TEST'` or `'PRODUCTION'` (the Google Pay API environment).
   final String environment;
 
-  /// The gateway merchant id N-Genius issues for Google Pay.
+  /// The merchant ID of the Google Pay & Wallet Console business profile;
+  /// the N-Genius SDK sends it to Google as the merchant id and as the
+  /// gateway merchant id.
   final String merchantGatewayId;
 
   Map<String, Object?> toMap() => <String, Object?>{
