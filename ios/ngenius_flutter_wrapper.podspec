@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'ngenius_flutter_wrapper'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'N-Genius Online (Network International) card and Apple Pay payments for Flutter.'
   s.description      = <<-DESC
 Flutter wrapper around the official N-Genius Online native payment SDK for iOS: card payments and

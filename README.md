@@ -175,6 +175,29 @@ in the environment (standard library only):
 python tool/sandbox_order.py --action SALE --amount 1250 --currency AED --language en --email buyer@example.com
 ```
 
+## The card step on N-Genius's hosted payment page
+
+The mobile SDKs have no currency choice. An app that wants Multi-Currency Pricing (the payer picks
+the currency their card is charged in) takes the card step on N-Genius's own hosted payment page
+instead, as Network International advises: open the order's `_links.payment.href` in a Chrome Custom
+Tab on Android and in `SFSafariViewController` on iOS. The plugin does not open the page itself;
+`url_launcher`'s `LaunchMode.inAppBrowserView` does exactly that on both platforms, and its
+`closeInAppWebView()` closes the page on iOS.
+
+What the plugin adds is the way back on Android. A Custom Tab cannot be closed by the app, and it
+sits on top of the app's activity in the same task, so a link straight to a `singleTop` main activity
+would start the app a second time above the tab. The plugin's manifest therefore merges
+`PayReturnActivity` into the app, with an intent filter for the scheme `<applicationId>.pay`
+(`com.example.shop.pay://return` for the application id `com.example.shop`). Let your return page
+(the order's `merchantAttributes.redirectUrl` and `cancelUrl`, on your own server) link to that
+address, and send the browser there by itself as well: the running app comes back to the front as it
+was and the tab closes. Chrome follows such an address only after a tap in some cases, so keep the
+visible link. Nothing is read from the address. It is no proof of a payment: confirm the order with
+your backend, as after every payment.
+
+On iOS no link is needed while the page is shown in `SFSafariViewController`: the app stays active
+behind it, so it can ask its backend and close the page when the answer is in.
+
 ## Example app
 
 `example/` pastes an order (or loads it with `--dart-define=ORDER_JSON_FILE=<device path>`), toggles

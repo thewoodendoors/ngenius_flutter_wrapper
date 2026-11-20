@@ -15,5 +15,24 @@
         <activity
             android:name="payment.sdk.android.payments.PaymentsActivity"
             android:theme="@style/Theme.NgeniusFlutterWrapper.Payments" />
+
+        <!-- The way back from N-Genius's hosted payment page, which the app opens in a
+             Custom Tab on top of itself: the merchant's return page links to
+             "<applicationId>.pay://return". The activity brings the running app back to
+             the front and closes the tab; it reads nothing from the link
+             (PayReturnActivity). -->
+        <activity
+            android:name="com.thewoodendoors.ngenius_flutter_wrapper.PayReturnActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="${applicationId}.pay" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

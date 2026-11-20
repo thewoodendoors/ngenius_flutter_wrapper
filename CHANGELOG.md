@@ -1,3 +1,13 @@
+## 0.2.0
+
+* Android: `PayReturnActivity`, the way back into the app from N-Genius's hosted payment page shown
+  in a Custom Tab (the card step for Multi-Currency Pricing, which the mobile SDKs cannot do). The
+  plugin's manifest merges it with an intent filter for the scheme `<applicationId>.pay`; a link to
+  `<applicationId>.pay://return` on the merchant's return page brings the running app back to the
+  front and closes the tab. No Dart API change; see "The card step on N-Genius's hosted payment
+  page" in the README.
+* The version is the same in `pubspec.yaml`, the Gradle file and the podspec again.
+
 ## 0.1.1
 
 * Android: the SDK's card screen (`PaymentsActivity`) is declared without a theme and
