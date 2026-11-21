@@ -195,6 +195,11 @@ was and the tab closes. Chrome follows such an address only after a tap in some 
 visible link. Nothing is read from the address. It is no proof of a payment: confirm the order with
 your backend, as after every payment.
 
+The address is not shown to the other SDKs in your app either. An analytics or attribution SDK that
+watches every activity (AppsFlyer, for one) would otherwise read it from the activity's intent and
+report it as a deep link, with whatever your return page put into it. `PayReturnActivity` empties
+its intent before those SDKs are told about it. Links that open your main activity are not touched.
+
 On iOS no link is needed while the page is shown in `SFSafariViewController`: the app stays active
 behind it, so it can ask its backend and close the page when the answer is in.
 

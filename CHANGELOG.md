@@ -1,3 +1,11 @@
+## 0.2.1
+
+* Android: `PayReturnActivity` no longer shows the return link to the other SDKs in the app. An
+  analytics or attribution SDK that watches every activity (AppsFlyer does) read the link from the
+  activity's intent and reported it as a deep link, with whatever the merchant's return page had
+  put into it. The activity now swaps its intent for an empty one before `super.onCreate()`, which
+  is where those SDKs are told about it. The way back itself is unchanged; no Dart or iOS change.
+
 ## 0.2.0
 
 * Android: `PayReturnActivity`, the way back into the app from N-Genius's hosted payment page shown

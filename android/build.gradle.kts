@@ -1,5 +1,5 @@
 group = "com.thewoodendoors.ngenius_flutter_wrapper"
-version = "0.2.0"
+version = "0.2.1"
 
 buildscript {
     val kotlinVersion = "2.4.0"

@@ -21,9 +21,18 @@ import android.os.Bundle
  *
  * Nothing of the link is passed on. The link is no proof of a payment: the app asks its own
  * server, which reads the order from N-Genius, as it does after every return to the foreground.
+ *
+ * The link is kept from the other SDKs in the app as well. Analytics and attribution SDKs register
+ * `Application.ActivityLifecycleCallbacks` and read the intent of every activity that is created;
+ * AppsFlyer, for one, takes any `VIEW` link it finds there for a deep link and sends it to its
+ * servers with the next launch. A merchant's return link may carry a payment number or a state
+ * that is nobody else's business. Those callbacks run inside `super.onCreate()`, so the activity
+ * swaps its intent for an empty one before that call.
  */
 class PayReturnActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Before super.onCreate(), which is where the SDKs that watch activities see this one.
+        intent = Intent()
         super.onCreate(savedInstanceState)
         val launch = packageManager.getLaunchIntentForPackage(packageName)
         if (launch != null) {
